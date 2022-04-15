@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.test_leak_demo.mapper.TestMapper">
+
+    <resultMap id="TestBeanMap" type="com.demo.test_leak_demo.bean.TestBean">
+        <result property= "testInt" column="BEAN_TEST_INT" />
+        <result property="testText" column="BEAN_TEST_TEXT" />
+        <result property= "testDate" column="BEAN_TEST_DATE" />
+        <association property="innerTestBean" columnPrefix="inner_" resultMap="InnerTestBeanMap"></association>
+    </resultMap>
+
+    <resultMap id="InnerTestBeanMap" type="com.demo.test_leak_demo.bean.InnerTestBean">
+        <result property= "testInt" column="BEAN_TEST_INT" />
+        <result property="testText" column="BEAN_TEST_TEXT" />
+        <result property= "testDate" column="BEAN_TEST_DATE" />
+    </resultMap>
+
+    <select id="findAll" resultMap="TestBeanMap">
+        SELECT
+            tt.TEST_INT_COLUMN AS BEAN_TEST_INT,
+            tt.TEST_TEXT_COLUMN AS BEAN_TEST_TEXT,
+            tt.TEST_DATE_COLUMN AS BEAN_TEST_DATE,
+            tt.TEST_INT_COLUMN AS inner_BEAN_TEST_INT,
+            tt.TEST_TEXT_COLUMN AS inner_BEAN_TEST_TEXT,
+            tt.TEST_DATE_COLUMN AS inner_BEAN_TEST_DATE
+        FROM TEST_TABLE tt
+    </select>
+</mapper>
