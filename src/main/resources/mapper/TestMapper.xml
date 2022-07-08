@@ -4,6 +4,7 @@
 <mapper namespace="com.demo.test_leak_demo.mapper.TestMapper">
 
     <resultMap id="TestBeanMap" type="com.demo.test_leak_demo.bean.TestBean">
+        <id property= "id" column="ID" />
         <result property= "testInt" column="BEAN_TEST_INT" />
         <result property="testText" column="BEAN_TEST_TEXT" />
         <result property= "testDate" column="BEAN_TEST_DATE" />
@@ -11,16 +12,19 @@
     </resultMap>
 
     <resultMap id="InnerTestBeanMap" type="com.demo.test_leak_demo.bean.InnerTestBean">
+        <id property= "id" column="ID" />
         <result property= "testInt" column="BEAN_TEST_INT" />
-        <result property="testText" column="BEAN_TEST_TEXT" />
+        <result property= "testText" column="BEAN_TEST_TEXT" />
         <result property= "testDate" column="BEAN_TEST_DATE" />
     </resultMap>
 
     <select id="findAll" resultMap="TestBeanMap">
         SELECT
+            tt.ID AS ID,
             tt.TEST_INT_COLUMN AS BEAN_TEST_INT,
             tt.TEST_TEXT_COLUMN AS BEAN_TEST_TEXT,
             tt.TEST_DATE_COLUMN AS BEAN_TEST_DATE,
+            tt.ID AS inner_ID,
             tt.TEST_INT_COLUMN AS inner_BEAN_TEST_INT,
             tt.TEST_TEXT_COLUMN AS inner_BEAN_TEST_TEXT,
             tt.TEST_DATE_COLUMN AS inner_BEAN_TEST_DATE

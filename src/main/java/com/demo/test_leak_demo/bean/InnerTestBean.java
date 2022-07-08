@@ -3,13 +3,21 @@ package com.demo.test_leak_demo.bean;
 import java.util.Date;
 
 public class InnerTestBean {
-
+    private Integer id;
     private Integer testInt;
     private String testText;
     private Date testDate;
 
     public InnerTestBean() {
         super();
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Integer getTestInt() {
@@ -38,6 +46,7 @@ public class InnerTestBean {
 
     @Override
     public String toString() {
-        return "InnerTestBean [testInt=" + testInt + ", testText=" + testText + ", testDate=" + testDate + "]";
+        return "InnerTestBean [id=" + id + ", testInt=" + testInt + ", testText=" + testText + ", testDate=" + testDate + "]";
     }
+
 }

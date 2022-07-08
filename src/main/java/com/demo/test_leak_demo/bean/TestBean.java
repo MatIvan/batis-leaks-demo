@@ -3,7 +3,7 @@ package com.demo.test_leak_demo.bean;
 import java.util.Date;
 
 public class TestBean {
-
+    private Integer id;
     private Integer testInt;
     private String testText;
     private Date testDate;
@@ -11,6 +11,14 @@ public class TestBean {
 
     public TestBean() {
         super();
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Integer getTestInt() {
@@ -47,6 +55,7 @@ public class TestBean {
 
     @Override
     public String toString() {
-        return "TestBean [testInt=" + testInt + ", testText=" + testText + ", testDate=" + testDate + ", innerTestBean=" + innerTestBean + "]";
+        return "TestBean [id=" + id + ", testInt=" + testInt + ", testText=" + testText + ", testDate=" + testDate + ", innerTestBean=" + innerTestBean + "]";
     }
+
 }
